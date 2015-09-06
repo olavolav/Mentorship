@@ -62,6 +62,12 @@ class DevelopersController < ApplicationController
     end
   end
 
+  # GET /developers/assignment
+  def assignment
+    developers = Developer.all
+    @assignments = MentorshipAssigner.new(developers).perform
+  end
+
 
   protected
 

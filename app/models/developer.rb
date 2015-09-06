@@ -32,4 +32,8 @@ class Developer
     !senior?
   end
 
+  def to_id
+    _id.to_s
+  end
+
 end

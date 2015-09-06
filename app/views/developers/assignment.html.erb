@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mentorship Assignment</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Senior mentor</th>
+      <th>Junior mentor</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assignments.each do |developer, mentors| %>
+      <tr>
+        <td><%= developer.name %></td>
+        <td><%= mentors.first.name %></td>
+        <td><%= mentors.last.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Recompute', assignment_developers_path %>
