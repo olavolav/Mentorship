@@ -2,7 +2,7 @@
 
 <h1>Mentorship Assignment</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -24,4 +24,5 @@
 
 <br>
 
-<%= link_to 'Recompute', assignment_developers_path %>
+<%= link_to 'Back to listing', developers_path, class: 'btn btn-default' %>
+<%= link_to 'Recompute', assignment_developers_path, class: 'btn btn-warning' %>
