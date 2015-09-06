@@ -1,5 +1,6 @@
 class DevelopersController < ApplicationController
   before_action :set_developer, only: [:show, :edit, :update, :destroy]
+  after_action :reset_seniority_limit, only: [:create, :update, :destroy]
 
   # GET /developers
   # GET /developers.json
@@ -61,14 +62,31 @@ class DevelopersController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_developer
-      @developer = Developer.find(params[:id])
+
+  protected
+
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_developer
+    @developer = Developer.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def developer_params
+    dev_params = params['developer']
+    if dev_params['starting_date(1i)'] && dev_params['starting_date(2i)'] && dev_params['starting_date(3i)']
+      dev_params['starting_date'] = Time.new(
+        dev_params.delete('starting_date(1i)'),
+        dev_params.delete('starting_date(2i)'),
+        dev_params.delete('starting_date(3i)')
+        )
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def developer_params
-      params.require(:developer).permit(:name, :starting_date)
-    end
+    params.require(:developer).permit(:name, :starting_date)
+  end
+
+  def reset_seniority_limit
+    Developer.reset_seniority_limit
+  end
+
 end
