@@ -14,14 +14,11 @@ class MentorshipAssigner
     while !success do # HACK HACK ugly HACK
       success = false
 
-      # assignments = {}
-      # developers.each{ |dev| assignments[dev.to_id] = [] }
-
       full_assignments = Hash.new {|h,k| h[k] = [] }
       begin
         # Assign senior developers
         max_number_of_mentorships = (nr_of_mentors_needed.to_f / senior_developers.count).ceil
-        assignments = (senior_developers.shuffle * max_number_of_mentorships).take(nr_of_mentors_needed)
+        assignments = (senior_developers.shuffle * max_number_of_mentorships).take(nr_of_mentors_needed).shuffle
         developers.each_with_index do |dev, index|
           mentor = assignments[index]
           raise 'cannot mentor yourself' if mentor == dev # Fantastic solution
@@ -30,7 +27,7 @@ class MentorshipAssigner
 
         # Assign junior developers
         max_number_of_mentorships = (nr_of_mentors_needed.to_f / junior_developers.count).ceil
-        assignments = (junior_developers.shuffle * max_number_of_mentorships).take(nr_of_mentors_needed)
+        assignments = (junior_developers.shuffle * max_number_of_mentorships).take(nr_of_mentors_needed).shuffle
         developers.each_with_index do |dev, index|
           mentor = assignments[index]
           raise 'cannot mentor yourself' if mentor == dev # Fantastic solution
