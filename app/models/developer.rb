@@ -1,4 +1,4 @@
-class User
+class Developer
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Attributes::Dynamic
