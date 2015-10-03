@@ -26,7 +26,7 @@ class Developer
 
 
   def senior?
-    starting_date <= self.class.senior_latest_starting_date
+    starting_date < self.class.senior_latest_starting_date
   end
 
   def junior?
