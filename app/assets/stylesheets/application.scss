@@ -1,9 +1,15 @@
-
-
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
 body {
   font-family: 'Nunito', 'Helvetica', sans-serif;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #999;
+  box-shadow: 2px 2px 3px #999;
+  margin-right: 8px;
 }

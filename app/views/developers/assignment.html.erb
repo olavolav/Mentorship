@@ -14,9 +14,9 @@
   <tbody>
     <% @assignments.each do |developer, mentors| %>
       <tr>
-        <td><%= developer.name %></td>
-        <td><%= mentors.first.name %></td>
-        <td><%= mentors.last.name %></td>
+        <td><%= render partial: 'developer', object: developer %></td>
+        <td><%= render partial: 'developer', object: mentors.first %></td>
+        <td><%= render partial: 'developer', object: mentors.last %></td>
       </tr>
     <% end %>
   </tbody>

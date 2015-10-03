@@ -88,7 +88,7 @@ class DevelopersController < ApplicationController
         )
     end
 
-    params.require(:developer).permit(:name, :starting_date)
+    params.require(:developer).permit(:name, :starting_date, :image_url)
   end
 
   def reset_seniority_limit
