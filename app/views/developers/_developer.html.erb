@@ -5,4 +5,8 @@
     <img src="https://bitbucket.org/account/tseoudy/avatar/256/?ts=0" class="avatar">
   <% end %>
   <%= developer.name %>
+
+  <% if developer.inactive? %>
+    <span class="inactive">(inactive)</span>
+  <% end %>
 </div

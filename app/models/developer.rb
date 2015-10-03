@@ -5,8 +5,11 @@ class Developer
   field :name, type: String
   field :starting_date, type: Date
   field :image_url, type: String
+  field :active, type: Boolean, default: true
 
   validates_presence_of :name, :starting_date
+
+  scope :active, -> { where(:active.in => [nil, true]) }
 
   def self.senior_latest_starting_date
     @@senior_latest_starting_date ||= begin
@@ -28,6 +31,10 @@ class Developer
 
   def junior?
     !senior?
+  end
+
+  def inactive?
+    !active?
   end
 
   def to_id
