@@ -5,7 +5,7 @@ class DevelopersController < ApplicationController
   # GET /developers
   # GET /developers.json
   def index
-    @developers = Developer.all
+    @developers = Developer.order_by(name: 'asc')
   end
 
   # GET /developers/1

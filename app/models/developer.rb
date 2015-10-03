@@ -10,14 +10,11 @@ class Developer
 
   def self.senior_latest_starting_date
     @@senior_latest_starting_date ||= begin
-      ordered_devs = all.sort{ |a,b| a.starting_date <=> b.starting_date }
-      limit_index = (count.to_f / 2).to_i
-      newest_senior_dev = ordered_devs[limit_index]
+      all_devs = self.order_by(starting_date: 'asc').to_a
+      limit_index = (all_devs.count.to_f / 2).to_i
+      newest_senior_dev = all_devs[limit_index]
       newest_senior_dev.starting_date
     end
-  end
-
-  def self.ordered_devs
   end
 
   def self.reset_seniority_limit
