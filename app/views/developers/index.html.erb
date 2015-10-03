@@ -17,7 +17,7 @@
       <tr>
         <td><%= render partial: 'developer', object: developer %></td>
         <td><%= developer.starting_date %></td>
-        <td><%= developer.senior? ? 'senior' : 'junior' %></td>
+        <td><%= (developer.senior? ? 'senior' : 'junior') if developer.active? %></td>
         <td><%= link_to 'Show', developer, class: 'btn' %></td>
         <td><%= link_to 'Edit', edit_developer_path(developer), class: 'btn' %></td>
         <td><%= link_to 'Destroy', developer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %></td>

@@ -13,7 +13,7 @@ class Developer
 
   def self.senior_latest_starting_date
     @@senior_latest_starting_date ||= begin
-      all_devs = self.order_by(starting_date: 'asc').to_a
+      all_devs = self.active.order_by(starting_date: 'asc').to_a
       limit_index = (all_devs.count.to_f / 2).to_i
       newest_senior_dev = all_devs[limit_index]
       newest_senior_dev.starting_date
