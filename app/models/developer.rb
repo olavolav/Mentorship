@@ -14,9 +14,14 @@ class Developer
   def self.senior_latest_starting_date
     Rails.cache.fetch(:senior_latest_starting_date) do
       all_devs = self.active.order_by(starting_date: 'asc').to_a
-      limit_index = (all_devs.count.to_f / 2).to_i
-      newest_senior_dev = all_devs[limit_index]
-      newest_senior_dev.starting_date
+      newest_senior_dev = if all_devs.count > 1
+        highest_senior_index = (all_devs.count.to_f / 2).floor.to_i - 1
+        newest_senior_dev = all_devs[highest_senior_index]
+      else
+        all_devs.first
+      end
+
+      newest_senior_dev.try(:starting_date)
     end
   end
 
@@ -26,7 +31,8 @@ class Developer
 
 
   def senior?
-    starting_date < self.class.senior_latest_starting_date
+    return true unless self.class.senior_latest_starting_date
+    starting_date <= self.class.senior_latest_starting_date
   end
 
   def junior?
