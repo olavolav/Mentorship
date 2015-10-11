@@ -8,9 +8,10 @@ class MentorshipAssigner
 
   def perform
     success = false
-    nr_of_mentors_needed = developers.count
-    return {} unless nr_of_mentors_needed > 1
+    return {} unless senior_developers.count > 1
+    return {} unless junior_developers.count > 1
 
+    nr_of_mentors_needed = developers.count
     while !success do # HACK HACK ugly HACK
       success = false
 
