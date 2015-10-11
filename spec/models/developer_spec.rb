@@ -8,7 +8,7 @@ describe Developer do
 
       let!(:alice) { create(:developer) }
 
-      it 'defaults to junior' do
+      it 'defaults to senior' do
         expect(alice).to be_senior
       end
 
@@ -21,7 +21,7 @@ describe Developer do
 
       it 'assigns seniority labels correctly' do
         expect(alice).to be_senior
-        expect(bob).to_not be_senior
+        expect(bob).to be_junior
       end
 
     end
