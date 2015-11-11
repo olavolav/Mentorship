@@ -1,7 +1,5 @@
 class MentorshipAssigner
 
-  attr_reader :developers
-
   def initialize(developers)
     @developers = developers
   end
@@ -48,12 +46,18 @@ class MentorshipAssigner
   protected
 
 
+  attr_reader :developers
+
   def senior_developers
-    @senior_developers ||= developers.select{ |dev| dev.senior? }
+    @senior_developers ||= full_time_developers.select(&:senior?)
   end
 
   def junior_developers
-    @junior_developers ||= developers.select{ |dev| dev.junior? }
+    @junior_developers ||= full_time_developers.select(&:junior?)
+  end
+
+  def full_time_developers
+    developers.select(&:full_time?)
   end
 
 end

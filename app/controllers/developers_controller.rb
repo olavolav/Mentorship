@@ -64,7 +64,7 @@ class DevelopersController < ApplicationController
 
   # GET /developers/assignment
   def assignment
-    developers = Developer.active
+    developers = Developer.full_timers
     @assignments = MentorshipAssigner.new(developers).perform
   end
 

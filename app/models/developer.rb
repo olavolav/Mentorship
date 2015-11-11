@@ -5,15 +5,15 @@ class Developer
   field :name, type: String
   field :starting_date, type: Date
   field :image_url, type: String
-  field :active, type: Boolean, default: true
+  field :part_time, type: Boolean, default: false
 
   validates_presence_of :name, :starting_date
 
-  scope :active, -> { where(:active.in => [nil, true]) }
+  scope :full_timers, -> { where(:part_time.in => [nil, false]) }
 
   def self.senior_latest_starting_date
     Rails.cache.fetch(:senior_latest_starting_date) do
-      all_devs = self.active.order_by(starting_date: 'asc').to_a
+      all_devs = self.full_timers.order_by(starting_date: 'asc').to_a
       newest_senior_dev = if all_devs.count > 1
         highest_senior_index = (all_devs.count.to_f / 2).floor.to_i - 1
         newest_senior_dev = all_devs[highest_senior_index]
@@ -39,8 +39,8 @@ class Developer
     !senior?
   end
 
-  def inactive?
-    !active?
+  def full_time?
+    !part_time?
   end
 
   def to_id
