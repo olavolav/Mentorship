@@ -64,8 +64,8 @@ class DevelopersController < ApplicationController
 
   # GET /developers/assignment
   def assignment
-    developers = Developer.full_timers
-    @assignments = MentorshipAssigner.new(developers).perform
+    all_devs = Developer.order_by(name: 'asc').to_a
+    @assignments = MentorshipAssigner.new(all_devs).perform
   end
 
 
@@ -88,7 +88,7 @@ class DevelopersController < ApplicationController
         )
     end
 
-    params.require(:developer).permit(:name, :starting_date, :image_url, :active)
+    params.require(:developer).permit(:name, :starting_date, :image_url, :part_time)
   end
 
   def reset_seniority_limit
