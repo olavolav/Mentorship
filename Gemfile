@@ -13,14 +13,15 @@ gem 'uglifier', '>= 1.3.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   gem 'byebug'
 end
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'rvm1-capistrano3'
   gem 'web-console', '~> 2.0'
 end
 
