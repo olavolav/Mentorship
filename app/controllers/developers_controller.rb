@@ -66,6 +66,7 @@ class DevelopersController < ApplicationController
   def assignment
     all_devs = Developer.order_by(name: 'asc').to_a
     @assignments = MentorshipAssigner.new(all_devs).perform
+    @honeybadger_responsible = Developer.pick_random_full_time_dev
   end
 
 

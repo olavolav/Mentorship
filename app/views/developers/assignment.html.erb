@@ -22,7 +22,14 @@
   </tbody>
 </table>
 
-<br>
+<h1>Honeybadger Role</h2>
 
-<%= link_to 'Back to listing', developers_path, class: 'btn btn-default' %>
-<%= link_to 'Recompute', assignment_developers_path, class: 'btn btn-warning' %>
+<p>
+  <%= render partial: 'developer', object: @honeybadger_responsible %>
+  <br>
+</p>
+
+<p>
+  <%= link_to 'Back to listing', developers_path, class: 'btn btn-default' %>
+  <%= link_to 'Recompute', assignment_developers_path, class: 'btn btn-warning' %>
+</p>
