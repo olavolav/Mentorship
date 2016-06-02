@@ -29,6 +29,10 @@ class Developer
     Rails.cache.delete(:senior_latest_starting_date)
   end
 
+  def self.pick_random_full_time_dev
+    full_timers.to_a.shuffle.first
+  end
+
 
   def senior?
     return true unless self.class.senior_latest_starting_date
