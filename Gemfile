@@ -9,9 +9,7 @@ gem 'mongoid', '~> 4.0.2'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 group :development, :test do
   gem 'byebug'
@@ -21,7 +19,8 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'rvm1-capistrano3'
+  gem 'capistrano3-unicorn'
+  gem 'rvm1-capistrano3', require: false
   gem 'web-console', '~> 2.0'
 end
 
