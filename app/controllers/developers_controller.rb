@@ -62,11 +62,18 @@ class DevelopersController < ApplicationController
     end
   end
 
+  # GET /developers/generate_assignment
+  def generate_assignment
+    all_devs = Developer.order_by(name: 'asc').to_a
+    MentorshipAssigner.new(all_devs).perform
+    Developer.pick_random_full_time_dev
+    redirect_to assignment_developers_path
+  end
+
   # GET /developers/assignment
   def assignment
-    all_devs = Developer.order_by(name: 'asc').to_a
-    @assignments = MentorshipAssigner.new(all_devs).perform
-    @honeybadger_responsible = Developer.pick_random_full_time_dev
+    @developers = Developer.order_by(name: 'asc')
+    @honeybadger_responsible = Developer.where(honeybadger: true).first
   end
 
 

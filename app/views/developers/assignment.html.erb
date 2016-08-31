@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Mentorship Assignment</h1>
+<h1>Current Mentorship Assignment</h1>
 
 <table class="table table-striped">
   <thead>
@@ -12,11 +12,11 @@
   </thead>
 
   <tbody>
-    <% @assignments.each do |developer, mentors| %>
+    <% @developers.each do |developer| %>
       <tr>
         <td><%= render partial: 'developer', object: developer %></td>
-        <td><%= render partial: 'developer', object: mentors.first %></td>
-        <td><%= render partial: 'developer', object: mentors.last %></td>
+        <td><%= render partial: 'developer', object: developer.senior_mentor %></td>
+        <td><%= render partial: 'developer', object: developer.junior_mentor %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,5 +31,5 @@
 
 <p>
   <%= link_to 'Back to listing', developers_path, class: 'btn btn-default' %>
-  <%= link_to 'Recompute', assignment_developers_path, class: 'btn btn-warning' %>
+  <%= link_to 'Recompute', generate_assignment_developers_path, class: 'btn btn-warning' %>
 </p>
