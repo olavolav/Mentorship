@@ -6,6 +6,10 @@ class Developer
   field :starting_date, type: Date
   field :image_url, type: String
   field :part_time, type: Boolean, default: false
+  field :honeybadger, type: Boolean, default: false
+
+  belongs_to :senior_mentor, class_name: 'Developer'
+  belongs_to :junior_mentor, class_name: 'Developer'
 
   validates_presence_of :name, :starting_date
 
@@ -30,7 +34,8 @@ class Developer
   end
 
   def self.pick_random_full_time_dev
-    full_timers.to_a.shuffle.first
+    self.update_all(honeybadger: false)
+    full_timers.to_a.shuffle.first.update_attributes(honeybadger: true)
   end
 
 

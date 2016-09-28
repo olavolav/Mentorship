@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :developers do
     collection do
-      get 'assignment'
+      get :assignment
+      get :generate_assignment
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -39,7 +39,9 @@ class MentorshipAssigner
       end
     end
 
-    full_assignments
+    full_assignments.each do |developer, mentors|
+      developer.update_attributes!(senior_mentor_id: mentors.first.id, junior_mentor_id: mentors.last.id)
+    end
   end
 
 

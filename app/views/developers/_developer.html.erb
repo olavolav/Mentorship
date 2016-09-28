@@ -1,12 +1,14 @@
 <div class="developer">
-  <% if developer.image_url.present? %>
-    <img src="<%= developer.image_url %>" class="avatar">
-  <% else %>
-    <img src="https://bitbucket.org/account/tseoudy/avatar/256/?ts=0" class="avatar">
-  <% end %>
-  <%= developer.name %>
+  <% if developer %>
+    <% if developer.image_url.present? %>
+      <img src="<%= developer.image_url %>" class="avatar">
+    <% else %>
+      <img src="https://bitbucket.org/account/tseoudy/avatar/256/?ts=0" class="avatar">
+    <% end %>
+    <%= developer.name %>
 
-  <% if developer.part_time? %>
-    <span class="inactive">(part-time)</span>
+    <% if developer.part_time? %>
+      <span class="inactive">(part-time)</span>
+    <% end %>
   <% end %>
 </div
