@@ -12,7 +12,7 @@ class Developer
   scope :full_timers, -> { where(:part_time.in => [nil, false]) }
 
   def self.senior_latest_starting_date
-    Rails.cache.fetch(:senior_latest_starting_date) do
+    # Rails.cache.fetch(:senior_latest_starting_date) do
       all_devs = self.full_timers.order_by(starting_date: 'asc').to_a
       newest_senior_dev = if all_devs.count > 1
         highest_senior_index = (all_devs.count.to_f / 2).floor.to_i - 1
@@ -22,7 +22,7 @@ class Developer
       end
 
       newest_senior_dev.try(:starting_date)
-    end
+    # end
   end
 
   def self.reset_seniority_limit
